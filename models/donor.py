@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator, MinValueValidator
 
 from formula_one.models.base import Model
 
@@ -26,15 +27,6 @@ class PlasmaDonor(Model):
         blank=True,
         null=True,
     )
-    tested_negative = models.BooleanField(
-        default=True
-    )
-    negative_when = models.DateField(
-        auto_now=False,
-        auto_now_add=False,
-        blank=True,
-        null=True,
-    )
     vaccinated = models.BooleanField(
         default=False
     )
@@ -44,7 +36,7 @@ class PlasmaDonor(Model):
             MinValueValidator(0),
         ],
     )
-    address  models.CharField(
+    address = models.CharField(
         max_length=255
     )
     other_contact = models.CharField(
