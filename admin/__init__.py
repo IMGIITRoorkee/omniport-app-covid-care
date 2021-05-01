@@ -1,0 +1,1 @@
+from Covid_Care.admin import admin

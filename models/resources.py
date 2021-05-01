@@ -13,7 +13,7 @@ class Resource(Model):
     """
 
     limit = models.Q(app_label='Covid_Care', model='request') | \
-            models.Q(app_label='Covid_Care', model='lead')
+        models.Q(app_label='Covid_Care', model='lead')
 
     resource_type = models.CharField(
         max_length=50,
