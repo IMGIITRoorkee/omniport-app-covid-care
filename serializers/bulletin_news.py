@@ -1,6 +1,6 @@
 from formula_one.serializers.base import ModelSerializer
 from rest_framework import serializers
-from Covid_care.models import BulletinNew
+from Covid_Care.models import BulletinNew
 
 
 class BulletinNewsSerializer(ModelSerializer):
@@ -8,7 +8,7 @@ class BulletinNewsSerializer(ModelSerializer):
     Details about the Serializer
     """
 
-    link = serializers.RelatedField(many=True)
+    link = serializers.RelatedField(many=True, read_only=True)
 
     class Meta:
         model = BulletinNew
