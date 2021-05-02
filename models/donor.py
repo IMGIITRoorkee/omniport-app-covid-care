@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator, MinValueValidator
 
 from formula_one.models.base import Model
+from core.kernel.constants.biological_information import BLOOD_GROUPS
 
 
 class PlasmaDonor(Model):
@@ -10,13 +11,15 @@ class PlasmaDonor(Model):
     """
 
     name = models.CharField(
-        max_length=127
+        max_length=127,
+        unique=True
     )
     contact = models.CharField(
         max_length=31
     )
     blood_group = models.CharField(
-        max_length=3
+        max_length=3,
+        choices=BLOOD_GROUPS,
     )
     tested_positive = models.BooleanField(
         default=False
