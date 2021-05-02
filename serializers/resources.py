@@ -2,7 +2,7 @@ from formula_one.serializers.base import ModelSerializer
 from Covid_Care.models import (
     Resource,
     Request,
-    Lead    
+    Lead
 )
 from Covid_Care.serializers import RequestsSerializer, LeadsSerializer
 from rest_framework import serializers
@@ -10,7 +10,7 @@ from rest_framework import serializers
 
 class ResourceForTypeRelatedField(serializers.RelatedField):
     """
-    
+
     """
 
     def to_representation(self, value):
@@ -23,7 +23,7 @@ class ResourceForTypeRelatedField(serializers.RelatedField):
             serializer = LeadsSerializer(value)
         else:
             raise Exception('Unexpected Type of Field Provided.')
-        
+
         return serializer.data
 
 

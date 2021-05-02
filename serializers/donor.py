@@ -41,4 +41,4 @@ class PlasmaDonorSerializer(ModelSerializer):
             'tested_positive',
             'pin_code',
             'address',
-        ] 
+        ]

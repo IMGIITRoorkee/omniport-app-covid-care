@@ -42,5 +42,5 @@ class LeadsSerializer(ModelSerializer):
         read_only = [
             'name',
             'pin_code',
-            'address',  
-        ] 
+            'address',
+        ]

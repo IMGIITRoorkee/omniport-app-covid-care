@@ -34,5 +34,5 @@ class RequestsSerializer(ModelSerializer):
             'patient_name',
             'age',
             'pin_code',
-            'address',  
-        ] 
+            'address',
+        ]
