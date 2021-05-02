@@ -19,11 +19,13 @@ class Lead(Model):
 
     upvotes = models.ManyToManyField(
         swapper.get_model_name('kernel', 'Person'),
-        related_name='leads_upvotes'
+        related_name='leads_upvotes',
+        blank=True
     )
     downvotes = models.ManyToManyField(
         swapper.get_model_name('kernel', 'Person'),
-        related_name='leads_downvotes'
+        related_name='leads_downvotes',
+        blank=True
     )
     name = models.CharField(
         max_length=255,
@@ -37,9 +39,7 @@ class Lead(Model):
             MinValueValidator(0),
         ],
     )
-    address = models.CharField(
-        max_length=255
-    )
+    address = models.TextField()
     verification = models.CharField(
         max_length=50,
         choices=verification
@@ -49,3 +49,11 @@ class Lead(Model):
         blank=True,
         null=True
     )
+
+    def __str__(self):
+        """
+        Short Description about the model
+        """
+        name = self.name
+        verification = self.verification
+        return f'Lead: Name = {name}, Verification = {verification}'

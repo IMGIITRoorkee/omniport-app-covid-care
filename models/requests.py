@@ -26,9 +26,7 @@ class Request(Model):
             MinValueValidator(0),
         ],
     )
-    address = models.CharField(
-        max_length=255
-    )
+    address = models.TextField()
     contact = models.CharField(
         max_length=63
     )
@@ -43,3 +41,11 @@ class Request(Model):
         blank=True,
         null=True
     )
+
+    def __str__(self):
+        """
+        Short Description about the function
+        """
+        patient_name = self.patient_name
+        return f'Request: Patient Name = {patient_name}'
+

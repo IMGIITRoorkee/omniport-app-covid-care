@@ -13,10 +13,16 @@ class BulletinNew(Model):
         'Description',
     )
     link = models.URLField(
-        max_length=200,
         blank=True
     )
     images = models.FileField(
         upload_to=UploadTo('Covid_Care', 'covid_care_files'),
         blank=True
     )
+
+    def __str__(self):
+        """
+        Short Description about the model
+        """
+        name = self.title
+        return f'Bulletin News: Name = {name}'

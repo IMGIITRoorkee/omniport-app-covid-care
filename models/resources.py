@@ -3,6 +3,7 @@ from django.contrib.contenttypes import fields as contenttypes_fields
 from django.contrib.contenttypes import models as contenttypes_models
 
 from formula_one.models.base import Model
+from Covid_Care.models import Request
 from Covid_Care.models.consts import categories
 from core.kernel.constants.biological_information import BLOOD_GROUPS
 
@@ -16,7 +17,7 @@ class Resource(Model):
         models.Q(app_label='Covid_Care', model='lead')
 
     resource_type = models.CharField(
-        max_length=50,
+        max_length=63,
         choices=categories,
     )
     cost = models.PositiveIntegerField(
@@ -24,12 +25,11 @@ class Resource(Model):
         null=True,
     )
     capacity = models.CharField(
-        max_length=15,
+        max_length=255,
         blank=True,
         null=True,
     )
     requirement = models.TextField(
-        max_length=127,
         blank=True,
         null=True,
     )
@@ -56,3 +56,11 @@ class Resource(Model):
         ct_field='entity_content_type',
         fk_field='entity_object_id',
     )
+
+    def __str__(self):
+        """
+        Short Description about the function
+        """
+        resource_type = self.resource_type
+        entity_content_type = self.entity_content_type
+        return f'Resource: Resource Type = {resource_type}, Resource For = {entity_content_type}'
