@@ -8,7 +8,7 @@ from Covid_Care.serializers import RequestsSerializer, LeadsSerializer
 from rest_framework import serializers
 
 
-class ResourceForTypeRelatedField(serializers):
+class ResourceForTypeRelatedField(serializers.RelatedField):
     """
     
     """
@@ -34,7 +34,7 @@ class ResourceSerializer(ModelSerializer):
     resource_for = ResourceForTypeRelatedField(read_only=True)
 
     class Meta:
-        model = Lead
+        model = Resource
         fields = [
             'pk',
             'name',
@@ -52,4 +52,5 @@ class ResourceSerializer(ModelSerializer):
             'name',
             'pin_code',
             'address',
+            'resource_for'
         ]

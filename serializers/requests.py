@@ -26,7 +26,7 @@ class RequestsSerializer(ModelSerializer):
             'pin_code',
             'address',
             'patient_spo2',
-            'patient_ct_level',
+            'patient_ct_value',
             'status',
             'other_contact',
         ]
