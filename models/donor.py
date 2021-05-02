@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator, MinValueValidator
 
 from formula_one.models.base import Model
+from Covid_Care.models import Request
 from core.kernel.constants.biological_information import BLOOD_GROUPS
 
 
@@ -39,11 +40,24 @@ class PlasmaDonor(Model):
             MinValueValidator(0),
         ],
     )
-    address = models.CharField(
-        max_length=255
+    address = models.TextField()
+    request = models.ForeignKey(
+        to=Request,
+        on_delete=models.SET_NULL,
+        related_name='plasma_request',
+        blank=True,
+        null=True
     )
     other_contact = models.CharField(
         max_length=50,
         blank=True,
         null=True
     )
+
+    def __str__(self):
+        """
+        Short Description about the model
+        """
+        name = self.name
+        blood_group = self.blood_group
+        return f'Donor: Name = {name}, Blood Group = {blood_group}'
