@@ -4,11 +4,12 @@ from Covid_Care.models import (
     Request,
     Lead
 )
-from Covid_Care.serializers import RequestsSerializer, LeadsSerializer
+from Covid_Care.serializers.requests import RequestsSerializer
+from Covid_Care.serializers.leads import LeadsSerializer
 from rest_framework import serializers
 
 
-class ResourceForTypeRelatedField(serializers.RelatedField):
+class ResourceForRelatedField(serializers.RelatedField):
     """
 
     """
@@ -31,26 +32,26 @@ class ResourceSerializer(ModelSerializer):
     """
     Details about the serializer
     """
-    resource_for = ResourceForTypeRelatedField(read_only=True)
+    resource_for = ResourceForRelatedField(read_only=True)
+    entity_content_type = serializers.SlugRelatedField(
+        slug_field='model',
+        read_only=True
+    )
 
     class Meta:
         model = Resource
         fields = [
             'pk',
-            'name',
-            'uploader',
-            'contact',
-            'pin_code',
-            'upvotes',
-            'downvotes',
-            'address',
-            'verification',
+            'resource_type',
+            'cost',
+            'capacity',
+            'requirement',
+            'patient_blood_group',
+            'description',
             'resource_for',
-            'other_contact',
+            'entity_content_type',
         ]
         read_only = [
-            'name',
-            'pin_code',
-            'address',
+            'resource_type',
             'resource_for'
         ]

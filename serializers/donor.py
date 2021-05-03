@@ -16,7 +16,8 @@ class PlasmaDonorSerializer(ModelSerializer):
             'contact',
             'pin_code',
             'address'
-        ]
+        ],
+        read_only=True
     )
 
     class Meta:
