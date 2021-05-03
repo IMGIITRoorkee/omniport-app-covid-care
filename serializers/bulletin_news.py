@@ -12,7 +12,7 @@ class BulletinNewsSerializer(ModelSerializer):
 
     class Meta:
         model = BulletinNew
-        field = [
+        fields = [
             'pk',
             'title',
             'description',
