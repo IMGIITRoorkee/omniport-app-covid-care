@@ -2,7 +2,9 @@ from Covid_Care.models.requests import Request
 
 from Covid_Care.models.leads import Lead
 
-from Covid_Care.models.resources import Resource
+from Covid_Care.models.resources import LeadResource
+
+from Covid_Care.models.resources import RequestResource
 
 from Covid_Care.models.donor import PlasmaDonor
 

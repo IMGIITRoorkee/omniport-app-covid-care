@@ -3,31 +3,24 @@ from django.contrib.contenttypes import fields as contenttypes_fields
 from django.contrib.contenttypes import models as contenttypes_models
 
 from formula_one.models.base import Model
-from Covid_Care.models import Request
+from Covid_Care.models import Lead, Request
 from Covid_Care.models.consts import categories
 from core.kernel.constants.biological_information import BLOOD_GROUPS
 
 
-class Resource(Model):
+class RequestResource(Model):
     """
     Short Description about the model
     """
 
-    limit = models.Q(app_label='Covid_Care', model='request') | \
-        models.Q(app_label='Covid_Care', model='lead')
-
+    request = models.ForeignKey(
+        to=Request,
+        on_delete=models.CASCADE,
+        related_name='resource'
+    )
     resource_type = models.CharField(
         max_length=63,
         choices=categories,
-    )
-    cost = models.PositiveIntegerField(
-        blank=True,
-        null=True,
-    )
-    capacity = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
     )
     requirement = models.TextField(
         blank=True,
@@ -39,22 +32,42 @@ class Resource(Model):
         blank=True,
         null=True,
     )
+
+    def __str__(self):
+        """
+        Short Description about the function
+        """
+        resource_type = self.resource_type
+        request = self.request
+        return f'Request Resource: {resource_type}, {request}'
+
+
+class LeadResource(Model):
+    """
+    Short Description about the model
+    """
+
+    lead = models.ForeignKey(
+        to=Lead,
+        on_delete=models.CASCADE,
+        related_name='resource'
+    )
+    resource_type = models.CharField(
+        max_length=63,
+        choices=categories,
+    )
+    cost = models.PositiveIntegerField(
+        blank=True,
+        null=True,
+    )
+    capacity = models.TextField(
+        blank=True,
+        null=True,
+    )
     description = models.TextField(
         max_length=255,
         blank=True,
         null=True,
-    )
-
-    # Relationship with resource for entity
-    entity_content_type = models.ForeignKey(
-        to=contenttypes_models.ContentType,
-        on_delete=models.CASCADE,
-        limit_choices_to=limit,
-    )
-    entity_object_id = models.PositiveIntegerField()
-    resource_for = contenttypes_fields.GenericForeignKey(
-        ct_field='entity_content_type',
-        fk_field='entity_object_id',
     )
 
     def __str__(self):
@@ -62,5 +75,5 @@ class Resource(Model):
         Short Description about the function
         """
         resource_type = self.resource_type
-        entity_content_type = self.entity_content_type
-        return f'Resource: Resource Type = {resource_type}, Resource For = {entity_content_type}'
+        lead = self.lead
+        return f'Lead Resource: {resource_type}, {lead}'
