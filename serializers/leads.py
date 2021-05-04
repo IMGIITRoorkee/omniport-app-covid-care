@@ -1,6 +1,7 @@
 from formula_one.serializers.base import ModelSerializer
 from omniport.utils import switcher
 from Covid_Care.models import Lead
+from Covid_Care.serializers.resources import LeadResourceSerializer 
 
 AvatarSerializer = switcher.load_serializer('kernel', 'Person', 'Avatar')
 
@@ -24,6 +25,10 @@ class LeadsSerializer(ModelSerializer):
         fields=['id', 'full_name'],
         many=True
     )
+    resource = LeadResourceSerializer(
+        read_only=True,
+        many=True
+    )
 
     class Meta:
         model = Lead
@@ -37,6 +42,7 @@ class LeadsSerializer(ModelSerializer):
             'downvotes',
             'address',
             'verification',
+            'resource',
             'other_contact',
         ]
         read_only = [
