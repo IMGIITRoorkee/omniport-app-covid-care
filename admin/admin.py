@@ -4,7 +4,8 @@ from omniport.admin.site import omnipotence
 from Covid_Care.models import (
     Request,
     Lead,
-    Resource,
+    LeadResource,
+    RequestResource,
     PlasmaDonor,
     BulletinNew
 )
@@ -12,7 +13,8 @@ from Covid_Care.models import (
 models = [
     Request,
     Lead,
-    Resource,
+    LeadResource,
+    RequestResource,
     PlasmaDonor,
     BulletinNew
 ]
