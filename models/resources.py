@@ -4,7 +4,7 @@ from django.contrib.contenttypes import models as contenttypes_models
 
 from formula_one.models.base import Model
 from Covid_Care.models import Lead, Request
-from Covid_Care.models.consts import categories
+from Covid_Care.constants import categories
 from core.kernel.constants.biological_information import BLOOD_GROUPS
 
 

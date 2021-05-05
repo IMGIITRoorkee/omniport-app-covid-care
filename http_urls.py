@@ -1,14 +1,17 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from Covid_Care.views.bulletin_news import BulletinNewsViewSet
-from Covid_Care.views.requests import RequestsViewSet
-from Covid_Care.views.leads import LeadsViewSet
-from Covid_Care.views.donor import PlasmaDonorViewSet
-from Covid_Care.views.person_data import PersonDataView
-from Covid_Care.views.lead_vote import LeadVoteView
-from Covid_Care.views.resources import RequestResourcesViewSet, LeadResourcesViewSet
-from Covid_Care.views.search import SearchView
+from Covid_Care.views import (
+    BulletinNewsViewSet,
+    RequestsViewSet,
+    LeadsViewSet,
+    PlasmaDonorViewSet,
+    PersonDataView,
+    LeadVoteView,
+    RequestResourcesViewSet,
+    LeadResourcesViewSet,
+    SearchView,
+)
 
 app_name = 'Covid_Care'
 

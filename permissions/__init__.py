@@ -1,1 +1,3 @@
 from .request_lead import IsUploaderOrSafeMethods, IsUploader
+from .request_resource import IsRequestUploaderOrSafeMethods, IsRequestUploader
+from .lead_resource import IsLeadUploaderOrSafeMethods, IsLeadUploader

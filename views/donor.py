@@ -1,6 +1,5 @@
 from rest_framework import viewsets, permissions
-
-from Covid_Care.serializers.donor import PlasmaDonorSerializer
+from Covid_Care.serializers import PlasmaDonorSerializer
 from Covid_Care.models import PlasmaDonor
 
 

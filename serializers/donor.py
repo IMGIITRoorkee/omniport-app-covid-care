@@ -1,5 +1,4 @@
 from formula_one.serializers.base import ModelSerializer
-
 from Covid_Care.models import PlasmaDonor
 from Covid_Care.serializers.requests import RequestsSerializer
 

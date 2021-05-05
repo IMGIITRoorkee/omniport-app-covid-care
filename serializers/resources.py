@@ -1,9 +1,10 @@
+from rest_framework import serializers
 from formula_one.serializers.base import ModelSerializer
 from Covid_Care.models import (
     LeadResource,
     RequestResource,
 )
-from rest_framework import serializers
+
 
 class RequestResourceSerializer(ModelSerializer):
     """
@@ -24,6 +25,7 @@ class RequestResourceSerializer(ModelSerializer):
             'resource_type',
             'patient_blood_group',
         ]
+
 
 class LeadResourceSerializer(ModelSerializer):
     """

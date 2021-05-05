@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from Covid_Care.models.leads import Lead
+from Covid_Care.models import Lead
 
 
 class LeadVoteView(APIView):

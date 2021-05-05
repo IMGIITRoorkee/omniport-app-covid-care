@@ -1,8 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from Covid_Care.serializers.leads import LeadsSerializer
-from Covid_Care.serializers.requests import RequestsSerializer
+from Covid_Care.serializers import LeadsSerializer, RequestsSerializer
 from Covid_Care.models import Lead, Request
 
 
@@ -43,10 +42,20 @@ class SearchView(APIView):
             for i in requestserializer.data:
                 requestsIndex[it] = abs(pin - i['pin_code'])
                 it = it + 1
-            leadsIndex = {k: v for k, v in sorted(leadsIndex.items(),
-                                                  key=lambda item: item[1])}
-            requestsIndex = {k: v for k, v in sorted(requestsIndex.items(),
-                                                     key=lambda item: item[1])}
+            leadsIndex = {
+                k: v for k,
+                v in sorted(
+                    leadsIndex.items(),
+                    key=lambda item: item[1]
+                )
+            }
+            requestsIndex = {
+                k: v for k,
+                v in sorted(
+                    requestsIndex.items(),
+                    key=lambda item: item[1]
+                )
+            }
             leadResponse = []
             requestResponse = []
             for i in leadsIndex:

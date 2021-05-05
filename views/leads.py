@@ -1,6 +1,5 @@
 from rest_framework import viewsets, permissions
-
-from Covid_Care.serializers.leads import LeadsSerializer
+from Covid_Care.serializers import LeadsSerializer
 from Covid_Care.models import Lead
 from Covid_Care.permissions import IsUploaderOrSafeMethods
 
