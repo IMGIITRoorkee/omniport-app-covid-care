@@ -4,7 +4,7 @@ from Covid_Care.serializers.requests import RequestsSerializer
 from Covid_Care.models import Request
 
 
-class RequestsViewSet(viewsets.ReadOnlyModelViewSet):
+class RequestsViewSet(viewsets.ModelViewSet):
     """
     """
 

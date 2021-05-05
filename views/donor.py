@@ -4,7 +4,7 @@ from Covid_Care.serializers.donor import PlasmaDonorSerializer
 from Covid_Care.models import PlasmaDonor
 
 
-class PlasmaDonorViewSet(viewsets.ReadOnlyModelViewSet):
+class PlasmaDonorViewSet(viewsets.ModelViewSet):
     """
     """
 
