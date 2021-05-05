@@ -20,6 +20,7 @@ class RequestResourcesViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = RequestResourceSerializer
     queryset = RequestResource.objects.all()
+    pagination_class = None
 
 
 class LeadResourcesViewSet(viewsets.ModelViewSet):
@@ -32,3 +33,4 @@ class LeadResourcesViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = LeadResourceSerializer
     queryset = LeadResource.objects.all()
+    pagination_class = None

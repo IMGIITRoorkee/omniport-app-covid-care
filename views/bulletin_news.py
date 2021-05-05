@@ -10,3 +10,4 @@ class BulletinNewsViewSet(viewsets.ModelViewSet):
     permissions_classes = [permissions.IsAuthenticated]
     serializer_class = BulletinNewsSerializer
     queryset = BulletinNew.objects.all()
+    pagination_class = None
