@@ -4,7 +4,7 @@ from Covid_Care.serializers.bulletin_news import BulletinNewsSerializer
 from Covid_Care.models.bulletin_news import BulletinNew
 
 
-class BulletinNewsViewSet(viewsets.ReadOnlyModelViewSet):
+class BulletinNewsViewSet(viewsets.ModelViewSet):
     """
     """
 
