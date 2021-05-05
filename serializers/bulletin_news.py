@@ -8,8 +8,6 @@ class BulletinNewsSerializer(ModelSerializer):
     Details about the Serializer
     """
 
-    link = serializers.RelatedField(many=True, read_only=True)
-
     class Meta:
         model = BulletinNew
         fields = [
