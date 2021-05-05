@@ -12,6 +12,9 @@ from covid_care.views import (
     LeadResourcesViewSet,
     SearchView,
     ResourceChoicesView,
+    MyRequestsView,
+    MyLeadsView,
+    MyPlasmaDonationsView,
 )
 
 app_name = 'covid_care'
@@ -38,5 +41,8 @@ urlpatterns = [
     path('lead-vote', LeadVoteView.as_view(), name='lead_vote'),
     path('search', SearchView.as_view(), name='search'),
     path('resource-choices', ResourceChoicesView.as_view(), name='resource_choices'),
+    path('my-requests', MyRequestsView.as_view(), name='my_requests'),
+    path('my-leads', MyLeadsView.as_view(), name='my_leads'),
+    path('my-plasma-donations', MyPlasmaDonationsView.as_view(), name='my_plasma_donations'),
     path('', include(router.urls)),
 ]

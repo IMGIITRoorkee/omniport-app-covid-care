@@ -13,7 +13,7 @@ class Request(Model):
 
     uploader = models.ForeignKey(
         to=swapper.get_model_name('kernel', 'Person'),
-        related_name='request_uploader',
+        related_name='requests',
         on_delete=models.CASCADE,
     )
     patient_name = models.CharField(

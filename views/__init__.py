@@ -7,3 +7,8 @@ from .resources import LeadResourcesViewSet, RequestResourcesViewSet
 from .search import SearchView
 from .person_data import PersonDataView
 from .resource_choices import ResourceChoicesView
+from .my_activity import (
+    MyRequestsView,
+    MyLeadsView,
+    MyPlasmaDonationsView
+)

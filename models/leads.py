@@ -13,7 +13,7 @@ class Lead(Model):
 
     uploader = models.ForeignKey(
         to=swapper.get_model_name('kernel', 'Person'),
-        related_name='leads_uploader',
+        related_name='leads',
         on_delete=models.CASCADE,
     )
     upvotes = models.ManyToManyField(
