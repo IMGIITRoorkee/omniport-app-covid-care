@@ -1,4 +1,4 @@
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from covid_care.serializers import LeadsSerializer, RequestsSerializer
@@ -7,19 +7,37 @@ from covid_care.models import Lead, Request
 
 class SearchView(APIView):
     """
+    Search for leads and requests based on pincode and resource type.
     """
+
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, *arigs, **kwargs):
         """
         """
         pin_code = request.query_params.get('p', None)
         resource = request.query_params.get('r', None)
-        if pin_code is not None and resource is not None:
+        if pin_code is not None:
             try:
-                leads = Lead.objects.filter(pin_code__startswith=pin_code[:2]).filter(
-                    resource__resource_type=resource)
-                requests = Request.objects.filter(pin_code__startswith=pin_code[:2]).filter(
-                    resource__resource_type=resource)
+                if resource is not None:
+                    leads = Lead.objects.filter(
+                        pin_code__startswith=pin_code[:2]
+                    ).filter(
+                        resource__resource_type=resource
+                    )
+                    requests = Request.objects.filter(
+                        pin_code__startswith=pin_code[:2]
+                    ).filter(
+                        resource__resource_type=resource
+                    )
+                else:
+                    leads = Lead.objects.filter(
+                        pin_code__startswith=pin_code[:2]
+                    )
+                    requests = Request.objects.filter(
+                        pin_code__startswith=pin_code[:2]
+                    )
+
                 leadserializer = LeadsSerializer(
                     leads, many=True
                 )
@@ -71,6 +89,6 @@ class SearchView(APIView):
             )
         else:
             return Response(
-                data='Provide valid pin code and resource',
+                data='Provide valid pincode',
                 status=status.HTTP_404_NOT_FOUND
             )

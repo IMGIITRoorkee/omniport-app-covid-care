@@ -11,6 +11,7 @@ from covid_care.views import (
     RequestResourcesViewSet,
     LeadResourcesViewSet,
     SearchView,
+    ResourceChoicesView,
 )
 
 app_name = 'covid_care'
@@ -36,5 +37,6 @@ urlpatterns = [
     path('person-data', PersonDataView.as_view(), name='person_data'),
     path('lead-vote', LeadVoteView.as_view(), name='lead_vote'),
     path('search', SearchView.as_view(), name='search'),
+    path('resource-choices', ResourceChoicesView.as_view(), name='resource_choices'),
     path('', include(router.urls)),
 ]
