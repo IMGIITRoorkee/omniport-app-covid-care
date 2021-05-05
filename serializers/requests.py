@@ -13,7 +13,7 @@ class RequestsSerializer(ModelSerializer):
 
     uploader = AvatarSerializer(
         read_only=True,
-        fields=['id', 'full_name']
+        fields=['id', 'full_name', 'roles']
     )
     resource = RequestResourceSerializer(
         read_only=True,

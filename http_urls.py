@@ -5,8 +5,9 @@ from Covid_Care.views.bulletin_news import BulletinNewsViewSet
 from Covid_Care.views.requests import RequestsViewSet
 from Covid_Care.views.leads import LeadsViewSet
 from Covid_Care.views.donor import PlasmaDonorViewSet
+from Covid_Care.views.person_data import PersonDataView
+from Covid_Care.views.lead_vote import LeadVoteView
 from Covid_Care.views.resources import RequestResourcesViewSet, LeadResourcesViewSet
-from Covid_Care.views.hello_world import HelloWorld
 from Covid_Care.views.search import SearchView
 
 app_name = 'Covid_Care'
@@ -23,6 +24,8 @@ router.register(r'lead_resource', LeadResourcesViewSet,
                 basename='leadResource')
 
 urlpatterns = [
+    path('person-data', PersonDataView.as_view(), name='person_data'),
+    path('lead-vote', LeadVoteView.as_view(), name='lead_vote'),
     path('search', SearchView.as_view(), name='search'),
     path('', include(router.urls)),
 ]
