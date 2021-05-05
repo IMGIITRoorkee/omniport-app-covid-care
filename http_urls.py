@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from Covid_Care.views import (
+from covid_care.views import (
     BulletinNewsViewSet,
     RequestsViewSet,
     LeadsViewSet,
@@ -13,7 +13,7 @@ from Covid_Care.views import (
     SearchView,
 )
 
-app_name = 'Covid_Care'
+app_name = 'covid_care'
 
 router = routers.SimpleRouter()
 

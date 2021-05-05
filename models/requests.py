@@ -3,7 +3,7 @@ from django.core.validators import RegexValidator, MinValueValidator
 
 import swapper
 from formula_one.models.base import Model
-from Covid_Care.constants import status
+from covid_care.constants import status
 
 
 class Request(Model):

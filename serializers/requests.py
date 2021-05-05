@@ -1,7 +1,7 @@
 from formula_one.serializers.base import ModelSerializer
 from omniport.utils import switcher
-from Covid_Care.models import Request
-from Covid_Care.serializers.resources import RequestResourceSerializer
+from covid_care.models import Request
+from covid_care.serializers.resources import RequestResourceSerializer
 
 AvatarSerializer = switcher.load_serializer('kernel', 'Person', 'Avatar')
 

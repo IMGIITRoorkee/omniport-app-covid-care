@@ -16,7 +16,7 @@ class BulletinNew(Model):
         blank=True
     )
     images = models.FileField(
-        upload_to=UploadTo('Covid_Care', 'covid_care_files'),
+        upload_to=UploadTo('covid_care', 'covid_care_files'),
         blank=True
     )
 

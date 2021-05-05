@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions
-from Covid_Care.serializers import RequestsSerializer
-from Covid_Care.models import Request
-from Covid_Care.permissions import IsUploaderOrSafeMethods
+from covid_care.serializers import RequestsSerializer
+from covid_care.models import Request
+from covid_care.permissions import IsUploaderOrSafeMethods
 
 
 class RequestsViewSet(viewsets.ModelViewSet):

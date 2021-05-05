@@ -1,8 +1,8 @@
 nomenclature:
-  name: Covid_Care
+  name: covid_care
   verboseName: Covid Care
 description: An app for Omniport that does what apps do
 baseUrls:
-  http: Covid_Care/
-  static: Covid_Care/
+  http: covid_care/
+  static: covid_care/
 isApi: true

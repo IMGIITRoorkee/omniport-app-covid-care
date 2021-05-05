@@ -3,8 +3,8 @@ from django.contrib.contenttypes import fields as contenttypes_fields
 from django.contrib.contenttypes import models as contenttypes_models
 
 from formula_one.models.base import Model
-from Covid_Care.models import Lead, Request
-from Covid_Care.constants import categories
+from covid_care.models import Lead, Request
+from covid_care.constants import categories
 from core.kernel.constants.biological_information import BLOOD_GROUPS
 
 
