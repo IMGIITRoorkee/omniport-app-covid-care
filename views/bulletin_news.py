@@ -5,9 +5,10 @@ from covid_care.models import BulletinNew
 
 class BulletinNewsViewSet(viewsets.ReadOnlyModelViewSet):
     """
+    Returns all the bulletin information articles.
     """
 
-    permissions_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = BulletinNewsSerializer
     queryset = BulletinNew.objects.all()
     pagination_class = None

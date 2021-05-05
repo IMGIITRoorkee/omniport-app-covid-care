@@ -30,11 +30,18 @@ class Request(Model):
     contact = models.CharField(
         max_length=63
     )
-    patient_spo2 = models.PositiveIntegerField()
-    patient_ct_value = models.PositiveIntegerField()
+    patient_spo2 = models.PositiveIntegerField(
+        blank=True,
+        null=True
+    )
+    patient_ct_value = models.PositiveIntegerField(
+        blank=True,
+        null=True
+    )
     status = models.CharField(
         max_length=50,
-        choices=status
+        choices=status,
+        default='active'
     )
     other_contact = models.CharField(
         max_length=255,
@@ -48,4 +55,3 @@ class Request(Model):
         """
         patient_name = self.patient_name
         return f'Request: Patient Name = {patient_name}'
-

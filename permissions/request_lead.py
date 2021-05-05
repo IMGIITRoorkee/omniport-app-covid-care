@@ -6,11 +6,12 @@ class IsUploaderOrSafeMethods(permissions.BasePermission):
         person = request.user.person
         if (
             request.method == 'POST' or
-            request.method in permissions.SAFE_METHODS or
-            person == obj.uploader
+            request.method in permissions.SAFE_METHODS
         ):
             return True
-        return False
+        else:
+            print(request.method, person, obj.uploader)
+            return person == obj.uploader
 
 
 class IsUploader(permissions.BasePermission):

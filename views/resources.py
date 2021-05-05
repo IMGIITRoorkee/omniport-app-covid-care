@@ -12,9 +12,10 @@ from covid_care.permissions import (
 
 class RequestResourcesViewSet(viewsets.ModelViewSet):
     """
+    Resouce of a help request.
     """
 
-    permissions_classes = [
+    permission_classes = [
         permissions.IsAuthenticated,
         IsRequestUploaderOrSafeMethods
     ]
@@ -25,9 +26,10 @@ class RequestResourcesViewSet(viewsets.ModelViewSet):
 
 class LeadResourcesViewSet(viewsets.ModelViewSet):
     """
+    Resource of a helpful lead.
     """
 
-    permissions_classes = [
+    permission_classes = [
         permissions.IsAuthenticated,
         IsLeadUploaderOrSafeMethods
     ]

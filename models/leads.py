@@ -16,7 +16,6 @@ class Lead(Model):
         related_name='leads_uploader',
         on_delete=models.CASCADE,
     )
-
     upvotes = models.ManyToManyField(
         swapper.get_model_name('kernel', 'Person'),
         related_name='leads_upvotes',
@@ -42,7 +41,8 @@ class Lead(Model):
     address = models.TextField()
     verification = models.CharField(
         max_length=50,
-        choices=verification
+        choices=verification,
+        default='verified_by_me'
     )
     other_contact = models.CharField(
         max_length=255,
