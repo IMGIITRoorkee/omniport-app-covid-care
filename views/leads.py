@@ -1,7 +1,9 @@
+import swapper
 from rest_framework import viewsets, permissions
 from covid_care.serializers import LeadsSerializer
 from covid_care.models import Lead
 from covid_care.permissions import IsUploaderOrSafeMethods
+from covid_care.utils.send_email import send_lead_form
 
 all_http_method_names = viewsets.ModelViewSet.http_method_names
 
@@ -24,3 +26,14 @@ class LeadsViewSet(viewsets.ModelViewSet):
             'patch'
         ]
     ]
+
+    def create(self, request, *args, **kwargs):
+        pin = str(request.data["pin_code"])
+        location = swapper.load_model('formula_one', 'LocationInformation')
+        l_i = location.objects.filter(postal_code__startswith=pin[:2])
+        person = []
+        for i in l_i:
+            person += i.person.all()
+        send_lead_form(person, pin)
+        response = super().create(request, *args, **kwargs)
+        return response
