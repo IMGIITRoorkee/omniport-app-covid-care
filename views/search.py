@@ -29,14 +29,14 @@ class SearchView(APIView):
                         pin_code__startswith=pin_code[:2]
                     ).filter(
                         resource__resource_type=resource
-                    )
+                    ).filter(status='active')
                 else:
                     leads = Lead.objects.filter(
                         pin_code__startswith=pin_code[:2]
                     )
                     requests = Request.objects.filter(
                         pin_code__startswith=pin_code[:2]
-                    )
+                    ).filter(status='active')
 
                 leadserializer = LeadsSerializer(
                     leads, many=True

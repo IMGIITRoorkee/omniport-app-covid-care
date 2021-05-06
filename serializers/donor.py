@@ -5,40 +5,19 @@ from covid_care.serializers.requests import RequestsSerializer
 
 class PlasmaDonorSerializer(ModelSerializer):
     """
-    Details about the serializer
+    Details about the plasma donor
     """
-
-    request = RequestsSerializer(
-        fields=[
-            'pk',
-            'patient_name',
-            'contact',
-            'pin_code',
-            'address'
-        ],
-        read_only=True
-    )
 
     class Meta:
         model = PlasmaDonor
         fields = [
-            'pk',
             'name',
             'contact',
+            'other_contact',
             'blood_group',
             'tested_positive',
             'positive_when',
             'vaccinated',
-            'pin_code',
-            'address',
-            'request',
-            'other_contact',
-        ]
-        read_only = [
-            'name',
-            'contact',
-            'blood_group',
-            'tested_positive',
             'pin_code',
             'address',
         ]
