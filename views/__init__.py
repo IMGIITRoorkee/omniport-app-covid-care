@@ -10,5 +10,6 @@ from .resource_choices import ResourceChoicesView
 from .my_activity import (
     MyRequestsView,
     MyLeadsView,
-    MyPlasmaDonationsView
+    MyPlasmaDonationsView,
+    MyActivityView,
 )

@@ -65,3 +65,39 @@ class MyPlasmaDonationsView(APIView):
             data=response_data,
             status=status.HTTP_200_OK
         )
+
+
+class MyActivityView(APIView):
+    """
+    Returns current user's requests, leads and plasma donations.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        person = request.person
+
+        requests = RequestsSerializer(
+            person.requests.all(),
+            many=True
+        ).data
+
+        leads = LeadsSerializer(
+            person.leads.all().exclude(resource__resource_type='plasma'),
+            many=True
+        ).data
+
+        plasmaDonations = LeadsSerializer(
+            person.leads.filter(resource__resource_type='plasma'),
+            many=True
+        ).data
+
+        response_data = {
+            'requests': requests,
+            'leads': leads,
+            'plasmaDonations': plasmaDonations
+        }
+
+        return Response(
+            data=response_data,
+            status=status.HTTP_200_OK
+        )
