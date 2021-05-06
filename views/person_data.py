@@ -1,6 +1,9 @@
 from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from omniport.utils import switcher
+
+AvatarSerializer = switcher.load_serializer('kernel', 'Person', 'Avatar')
 
 
 class PersonDataView(APIView):
@@ -15,6 +18,33 @@ class PersonDataView(APIView):
         try:
             location_information = person.location_information.all()[0]
             contact_information = person.contact_information.all()[0]
+            person_info = AvatarSerializer(
+                person,
+                fields=['id', 'full_name', 'roles']
+            ).data
+            person_information = {}
+            for role in person_info['roles']:
+                if role['role'] == 'Student':
+                    person_information = {
+                        'name': person_info['full_name'],
+                        'role': 'Student',
+                        'branch': role['data']['branch']['name'],
+                        'degree': role['data']['branch']['degree']['name'].split(' - ')[0],
+                        'year': role['data']['current_year'],
+                    }
+                elif role['role'] == 'FacultyMember':
+                    person_information = {
+                        'name': person_info['full_name'],
+                        'role': 'Faculty',
+                        'department': role['data']['department']['name'],
+                    }
+                else:
+                    person_information = {
+                        'name': person_info['full_name'],
+                        'role': 'N.A.',
+                        'department': 'N.A.',
+                    }
+
         except:
             return Response(
                 data="Couldn't find person location and contact information.",
@@ -22,6 +52,7 @@ class PersonDataView(APIView):
             )
 
         response_data = {
+            'person_information': person_information,
             'location_information': {
                 'address': location_information.address,
                 'state': location_information.state,
