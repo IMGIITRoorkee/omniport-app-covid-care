@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from formula_one.serializers.base import ModelSerializer
 from omniport.utils import switcher
-from covid_care.models import Lead, LeadResource
+from covid_care.models import Lead, LeadResource, PlasmaDonor
 from covid_care.serializers.resources import LeadResourceSerializer
+from covid_care.serializers.donor import PlasmaDonorSerializer
 
 AvatarSerializer = switcher.load_serializer('kernel', 'Person', 'Avatar')
 
@@ -19,6 +20,7 @@ class LeadsSerializer(ModelSerializer):
     upvote_count = serializers.ReadOnlyField(source='upvotes.count')
     downvote_count = serializers.ReadOnlyField(source='downvotes.count')
     resource = LeadResourceSerializer(many=True)
+    plasma_donor = PlasmaDonorSerializer(many=True)
     verification_display = serializers.ReadOnlyField(
         source='get_verification_display'
     )
@@ -53,6 +55,7 @@ class LeadsSerializer(ModelSerializer):
             'datetime_created',
             'verification_display',
             'title',
+            'plasma_donor',
         ]
         read_only_fields = [
             'pk',
@@ -64,6 +67,7 @@ class LeadsSerializer(ModelSerializer):
 
     def create(self, validated_data):
         resources_data = validated_data.pop('resource')
+        donor_data = validated_data.pop('plasma_donor')
         person = self.context['request'].person
         lead = Lead.objects.create(
             **validated_data,
@@ -73,5 +77,10 @@ class LeadsSerializer(ModelSerializer):
             LeadResource.objects.create(
                 lead=lead,
                 **resource_data
+            )
+        for donor in donor_data:
+            PlasmaDonor.objects.create(
+                lead=lead,
+                **donor
             )
         return lead

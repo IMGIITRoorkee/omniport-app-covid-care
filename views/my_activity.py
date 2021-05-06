@@ -6,7 +6,7 @@ from covid_care.serializers import RequestsSerializer, LeadsSerializer
 
 class MyRequestsView(APIView):
     """
-    Returns person location and contact information.
+    Returns current user's help requests.
     """
     permission_classes = [permissions.IsAuthenticated]
 
@@ -27,7 +27,7 @@ class MyRequestsView(APIView):
 
 class MyLeadsView(APIView):
     """
-    Returns person location and contact information.
+    Returns current user's helpful leads.
     """
     permission_classes = [permissions.IsAuthenticated]
 
@@ -48,7 +48,7 @@ class MyLeadsView(APIView):
 
 class MyPlasmaDonationsView(APIView):
     """
-    Returns person location and contact information.
+    Returns current user's plasma donations.
     """
     permission_classes = [permissions.IsAuthenticated]
 
