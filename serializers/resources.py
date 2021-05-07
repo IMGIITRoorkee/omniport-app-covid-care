@@ -17,7 +17,6 @@ class RequestResourceSerializer(ModelSerializer):
     class Meta:
         model = RequestResource
         fields = [
-            'request',
             'resource_type',
             'resource_type_display',
             'requirement',
