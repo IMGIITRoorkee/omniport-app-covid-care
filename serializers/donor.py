@@ -11,13 +11,8 @@ class PlasmaDonorSerializer(ModelSerializer):
     class Meta:
         model = PlasmaDonor
         fields = [
-            'name',
-            'contact',
-            'other_contact',
             'blood_group',
             'tested_positive',
             'positive_when',
             'vaccinated',
-            'pin_code',
-            'address',
         ]
