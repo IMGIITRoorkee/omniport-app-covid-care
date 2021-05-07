@@ -11,13 +11,6 @@ class PlasmaDonor(Model):
     Short Description about the model
     """
 
-    name = models.CharField(
-        max_length=127,
-        unique=True
-    )
-    contact = models.CharField(
-        max_length=31
-    )
     blood_group = models.CharField(
         max_length=3,
         choices=BLOOD_GROUPS,
@@ -34,28 +27,16 @@ class PlasmaDonor(Model):
     vaccinated = models.BooleanField(
         default=False
     )
-    pin_code = models.IntegerField(
-        validators=[
-            RegexValidator(r'^[0-9]{3,9}$'),
-            MinValueValidator(0),
-        ],
-    )
-    address = models.TextField()
     lead = models.ForeignKey(
         to=Lead,
         on_delete=models.CASCADE,
         related_name='plasma_donor',
-    )
-    other_contact = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True
     )
 
     def __str__(self):
         """
         Short Description about the model
         """
-        name = self.name
+        lead = self.lead
         blood_group = self.blood_group
-        return f'Donor: Name = {name}, Blood Group = {blood_group}'
+        return f'Donor: Blood Group = {blood_group}, Lead = {lead}'
