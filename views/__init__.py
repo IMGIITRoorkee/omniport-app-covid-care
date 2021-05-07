@@ -13,3 +13,7 @@ from .my_activity import (
     MyPlasmaDonationsView,
     MyActivityView,
 )
+from .template_generate import (
+    RequestTemplateImageView,
+    LeadTemplateImageView
+)

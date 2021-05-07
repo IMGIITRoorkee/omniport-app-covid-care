@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @page {
+        size: 1080px;
+      }
+      body {
+        background: white;
+        font-family: system-ui;
+        font-size: 32px;
+      }
+    </style>
+  </head>
+  <body>
+  {% if lead %}
+  <div>{{lead.name}}</div>
+  <div>{{lead.pin_code}}</div>
+  <div>{{lead.contact}}</div>
+  {% endif%}
+  {% if state%}
+  <div>{{state}}</div>
+  {% endif %}
+  {% if district%}
+  <div>{{district}}</div>
+  {% endif %}
+  </body>
+</html>

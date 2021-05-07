@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @page {
+        size: 1080px;
+      }
+      body {
+        background: white;
+        font-family: system-ui;
+        font-size: 32px;
+      }
+    </style>
+  </head>
+  <body>
+  {% if request %}
+  <div>{{request.patient_name}}</div>
+  <div>{{request.age}}</div>
+  <div>{{request.contact}}</div>
+  {% endif%}
+  {% if state%}
+  <div>{{state}}</div>
+  {% endif %}
+  {% if district%}
+  <div>{{district}}</div>
+  {% endif %}
+  </body>
+</html>
