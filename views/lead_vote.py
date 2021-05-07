@@ -24,15 +24,35 @@ class LeadVoteView(APIView):
                 )
 
             if vote == 'upvote':
-                lead.downvotes.remove(person)
-                lead.upvotes.add(person)
+                if person in lead.upvotes.all():
+                    lead.upvotes.remove(person)
+                else:
+                    lead.downvotes.remove(person)
+                    lead.upvotes.add(person)
+                lead.save()
 
             elif vote == 'downvote':
-                lead.upvotes.remove(person)
-                lead.downvotes.add(person)
+                if person in lead.downvotes.all():
+                    lead.downvotes.remove(person)
+                else:
+                    lead.upvotes.remove(person)
+                    lead.downvotes.add(person)
+                lead.save()
+
+            else:
+                return Response(
+                    data='Invalid vote type.',
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            upvoteCount = lead.upvotes.count()
+            downvoteCount = lead.downvotes.count()
 
             return Response(
-                data=f"Lead {vote}d successfully.",
+                data={
+                    'upvoteCount': upvoteCount,
+                    'downvoteCount': downvoteCount,
+                },
                 status=status.HTTP_200_OK
             )
 
