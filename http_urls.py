@@ -1,21 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from covid_care.views import (
-    BulletinNewsViewSet,
-    RequestsViewSet,
-    LeadsViewSet,
-    PlasmaDonorViewSet,
-    PersonDataView,
-    LeadVoteView,
-    RequestResourcesViewSet,
-    LeadResourcesViewSet,
-    SearchView,
-    ResourceChoicesView,
-    MyRequestsView,
-    MyLeadsView,
-    MyPlasmaDonationsView,
-)
+from covid_care.views import *
 
 app_name = 'covid_care'
 
@@ -41,6 +27,7 @@ urlpatterns = [
     path('lead-vote', LeadVoteView.as_view(), name='lead_vote'),
     path('search', SearchView.as_view(), name='search'),
     path('resource-choices', ResourceChoicesView.as_view(), name='resource_choices'),
+    path('my-activity', MyActivityView.as_view(), name='my_activity'),
     path('my-requests', MyRequestsView.as_view(), name='my_requests'),
     path('my-leads', MyLeadsView.as_view(), name='my_leads'),
     path('my-plasma-donations', MyPlasmaDonationsView.as_view(), name='my_plasma_donations'),
