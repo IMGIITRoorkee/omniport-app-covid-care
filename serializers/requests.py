@@ -51,7 +51,7 @@ class RequestsSerializer(ModelSerializer):
             'status_display',
             'title',
         ]
-        read_only = [
+        read_only_fields = [
             'pk',
             'datetime_created',
             'uploader',
