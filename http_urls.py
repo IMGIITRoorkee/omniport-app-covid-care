@@ -28,7 +28,6 @@ urlpatterns = [
     path('search', SearchView.as_view(), name='search'),
     path('resource-choices', ResourceChoicesView.as_view(), name='resource_choices'),
     path('my-activity', MyActivityView.as_view(), name='my_activity'),
-    path('my-activity', MyActivityView.as_view(), name='my_activity'),
     path('my-requests', MyRequestsView.as_view(), name='my_requests'),
     path('my-leads', MyLeadsView.as_view(), name='my_leads'),
     path('my-plasma-donations', MyPlasmaDonationsView.as_view(),
