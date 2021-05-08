@@ -1,4 +1,5 @@
 import swapper
+from django.utils import timezone
 from rest_framework import status, viewsets, permissions
 from rest_framework.response import Response
 from r_care.serializers import RequestsSerializer
@@ -29,6 +30,20 @@ class RequestsViewSet(viewsets.ModelViewSet):
     ]
 
     def create(self, request, *args, **kwargs):
+        person = request.person
+        person_requests = Request.objects.filter(uploader=person)
+        if len(person_requests) != 0:
+            last_request = person_requests.order_by('-datetime_created')[0]
+            last_created_on = last_request.datetime_created
+            time_delta = timezone.now() - last_created_on
+            time_delta_minutes = time_delta.total_seconds() / 60
+
+            if time_delta_minutes < 30:
+                return Response(
+                    data=f"Cannot create more than one request within 30 minutes.",
+                    status=status.HTTP_429_TOO_MANY_REQUESTS
+                )
+
         pin = str(request.data["pin_code"])
         location = swapper.load_model('formula_one', 'LocationInformation')
         l_i = location.objects.filter(postal_code__startswith=pin[:2])
