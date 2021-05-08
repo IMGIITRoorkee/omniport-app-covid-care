@@ -22,6 +22,12 @@ class LeadVoteView(APIView):
                     data='Lead not found.',
                     status=status.HTTP_404_NOT_FOUND
                 )
+                
+            if person == lead.uploader:
+                return Response(
+                    data='Cannot upvote or downvote your own lead.',
+                    status=status.HTTP_403_FORBIDDEN
+                )
 
             if vote == 'upvote':
                 if person in lead.upvotes.all():
