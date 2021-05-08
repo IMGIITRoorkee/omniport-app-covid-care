@@ -50,7 +50,6 @@ class LeadTemplateImageView(APIView):
     def get(self, request, *args, **kwargs):
         lead_id = request.query_params.get('id', None)
         if lead_id is not None:
-            lead_template_link = store_lead_template_image(lead_id)
             try:
                 lead = Request.objects.get(id=lead_id)
             except:
@@ -58,6 +57,8 @@ class LeadTemplateImageView(APIView):
                     data='Lead not found.',
                     status=status.HTTP_404_NOT_FOUND
                 )
+
+            lead_template_link = store_lead_template_image(lead_id)
 
             return Response(
                 data={
