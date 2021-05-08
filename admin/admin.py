@@ -1,7 +1,7 @@
 from django.contrib.admin.sites import AlreadyRegistered
 
 from omniport.admin.site import omnipotence
-from covid_care.models import (
+from r_care.models import (
     Request,
     Lead,
     LeadResource,

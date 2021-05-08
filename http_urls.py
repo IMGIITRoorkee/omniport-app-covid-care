@@ -1,9 +1,9 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from covid_care.views import *
+from r_care.views import *
 
-app_name = 'covid_care'
+app_name = 'r_care'
 
 router = routers.SimpleRouter()
 

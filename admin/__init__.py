@@ -1,1 +1,1 @@
-from covid_care.admin import admin
+from r_care.admin import admin

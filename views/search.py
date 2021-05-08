@@ -1,8 +1,8 @@
 from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from covid_care.serializers import LeadsSerializer, RequestsSerializer
-from covid_care.models import Lead, Request
+from r_care.serializers import LeadsSerializer, RequestsSerializer
+from r_care.models import Lead, Request
 
 
 class SearchView(APIView):

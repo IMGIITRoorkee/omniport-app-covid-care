@@ -1,10 +1,10 @@
 from rest_framework import viewsets, permissions
-from covid_care.models import RequestResource, LeadResource
-from covid_care.serializers import (
+from r_care.models import RequestResource, LeadResource
+from r_care.serializers import (
     RequestResourceSerializer,
     LeadResourceSerializer
 )
-from covid_care.permissions import (
+from r_care.permissions import (
     IsRequestUploaderOrSafeMethods,
     IsLeadUploaderOrSafeMethods
 )

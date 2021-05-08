@@ -1,6 +1,6 @@
 from formula_one.serializers.base import ModelSerializer
-from covid_care.models import PlasmaDonor
-from covid_care.serializers.requests import RequestsSerializer
+from r_care.models import PlasmaDonor
+from r_care.serializers.requests import RequestsSerializer
 
 
 class PlasmaDonorSerializer(ModelSerializer):

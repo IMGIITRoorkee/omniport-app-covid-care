@@ -1,9 +1,9 @@
 from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from covid_care.models import Request, Lead
-from covid_care.serializers import RequestsSerializer, LeadsSerializer
-from covid_care.utils.generate_card import (
+from r_care.models import Request, Lead
+from r_care.serializers import RequestsSerializer, LeadsSerializer
+from r_care.utils.generate_card import (
     store_request_template_image,
     store_lead_template_image
 )
