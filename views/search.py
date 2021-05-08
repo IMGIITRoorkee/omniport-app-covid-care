@@ -17,7 +17,7 @@ class SearchView(APIView):
         """
         pin_code = request.query_params.get('p', None)
         resource = request.query_params.get('r', None)
-        if pin_code is not None:
+        if pin_code is not None and isinstance(pin_code, int):
             try:
                 if resource is not None:
                     leads = Lead.objects.filter(
