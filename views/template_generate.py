@@ -51,7 +51,7 @@ class LeadTemplateImageView(APIView):
         lead_id = request.query_params.get('id', None)
         if lead_id is not None:
             try:
-                lead = Request.objects.get(id=lead_id)
+                lead = Lead.objects.get(id=lead_id)
             except:
                 return Response(
                     data='Lead not found.',
