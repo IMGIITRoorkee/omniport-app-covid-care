@@ -2,11 +2,19 @@ import swapper
 from django.utils import timezone
 from rest_framework import status, viewsets, permissions
 from rest_framework.response import Response
+<<<<<<< HEAD
 from r_care.serializers import RequestsSerializer
 from r_care.models import Request
 from r_care.permissions import IsUploaderOrSafeMethods
 from r_care.utils.send_email import send_request_form
 from r_care.constants.status import status as status_choices
+=======
+from covid_care.serializers import RequestsSerializer
+from covid_care.models import Request
+from covid_care.permissions import IsUploaderOrSafeMethods
+from covid_care.utils.send_email import send_request_email
+from covid_care.constants.status import status as status_choices
+>>>>>>> 3d0dd1a... Write template for emailing for leads and requests
 
 all_http_method_names = viewsets.ModelViewSet.http_method_names
 
@@ -50,7 +58,7 @@ class RequestsViewSet(viewsets.ModelViewSet):
         person = []
         for i in l_i:
             person += i.person.all()
-        send_request_form(person, pin)
+        send_request_email(person, request.data)
         response = super().create(request, *args, **kwargs)
         return response
 

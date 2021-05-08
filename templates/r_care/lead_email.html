@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    {% if lead %}
+    <div>
+      Lead for the following resource is being added in the R-Care App:
+    </div>
+    <br/>
+    {% for i in lead.resource %}
+    <div>
+      {{forloop.counter}}.{{ i.resource_type_display }}:<br/>
+      {% if i.capacity %} Capacity: {{i.capacity}} {% endif %}
+      {% if i.description %} Description: {{ i.description }} {% endif %}
+    </div>
+    {% endfor %}
+    <br/>
+    <div>
+    Name: {{lead.name}}
+    </div>
+    <div>
+    Contact: {{lead.contact}} 
+    <div>
+    {% if lead.other_contact%}
+    <div>
+    Alternate Contact: {{lead.other_contact}}
+    </div>
+    {% endif %}
+    <br/>
+    <div>
+    Address: {{lead.address}}, {{lead.pin_code}} <br/>
+    </div>
+    <br/>
+    <div> 
+    If you know someone in the need of above resources in the given region, please contact the lead creator. You may also add a request for the person you know and might be in need at 
+    <a href="https://channeli.in/r_care/request">channeli.in/r_care/request</a>.
+    </div>
+    <br/>
+    <div>
+    We stand together.
+    </div>
+    {% endif %}
+  </body>
+</html> 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    {% if request %}
+    <div>
+      A request for the following resources and specifications was added in
+      R-Care on {% now "SHORT_DATETIME_FORMAT" %}:
+    </div>
+    <br/>
+    {% for i in request.resource %}
+    <div>
+      {{forloop.counter}}.{{ i.resource_type_display }} :<br/>
+      {% if i.requirement %} Requirement: {{ i.requirement }} {% endif %}
+      {% if i.patient_blood_group %} Blood Group: {{ i.patient_blood_group }} {% endif %}
+    </div>
+    {% endfor %}
+    <br/>
+    <div>
+    Contact: {{request.contact}} 
+    <div>
+    {% if request.other_contact%}
+    <div>
+    Alternate Contact: {{request.other_contact}}
+    </div>
+    {% endif %}
+    <div>
+    Patient Name: {{request.patient_name}}
+    </div>
+    <div>
+    Patient Age: {{request.patient_age}}
+    </div>
+    {% if request.patient_spo2 %}
+    <div>
+    Patient SpO2: {{request.patient_spo2}}
+    </div>
+    {% endif %}
+    {% if request.patient_ct_value %}
+    <div>
+    Patient CT Value: {{request.patient_ct_value}}
+    </div>
+    {% endif %}
+    <br/>
+    <div>
+    Address: {{request.address}}, {{request.pin_code}}
+    </div>
+    <br/>
+    <div>
+    If you have any information or lead regarding the requested resources in the given region, please contact the request creator. You may also share helpful leads that you know about at 
+    <a href="https://channeli.in/r_care/lead">channeli.in/r_care/lead</a>.
+    </div>
+    <br/>
+    <div>
+    We stand together.
+    </div>
+    {% endif %}
+  </body>
+</html> 
