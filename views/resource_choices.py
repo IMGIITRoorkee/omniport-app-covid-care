@@ -1,7 +1,7 @@
 from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from covid_care.constants import categories
+from r_care.constants import categories
 
 
 class ResourceChoicesView(APIView):

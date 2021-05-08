@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from formula_one.serializers.base import ModelSerializer
 from omniport.utils import switcher
-from covid_care.models import Lead, LeadResource, PlasmaDonor
-from covid_care.serializers.resources import LeadResourceSerializer
-from covid_care.serializers.donor import PlasmaDonorSerializer
+from r_care.models import Lead, LeadResource, PlasmaDonor
+from r_care.serializers.resources import LeadResourceSerializer
+from r_care.serializers.donor import PlasmaDonorSerializer
 
 AvatarSerializer = switcher.load_serializer('kernel', 'Person', 'Avatar')
 

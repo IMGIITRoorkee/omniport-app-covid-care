@@ -11,7 +11,7 @@ def send_request_form(person, pin_code):
     """
 
     service = settings.DISCOVERY.get_app_configuration(
-        'covid_care'
+        'r_care'
     )
     category = Category.objects.get_or_create(
         name=service.nomenclature.verbose_name,
@@ -42,7 +42,7 @@ def send_lead_form(person, pin_code):
     """
 
     service = settings.DISCOVERY.get_app_configuration(
-        'covid_care'
+        'r_care'
     )
     category = Category.objects.get_or_create(
         name=service.nomenclature.verbose_name,

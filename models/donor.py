@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator, MinValueValidator
 
 from formula_one.models.base import Model
-from covid_care.models import Lead
+from r_care.models import Lead
 from core.kernel.constants.biological_information import BLOOD_GROUPS
 
 

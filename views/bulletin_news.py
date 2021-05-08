@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions
-from covid_care.serializers import BulletinNewsSerializer
-from covid_care.models import BulletinNew
+from r_care.serializers import BulletinNewsSerializer
+from r_care.models import BulletinNew
 
 
 class BulletinNewsViewSet(viewsets.ReadOnlyModelViewSet):

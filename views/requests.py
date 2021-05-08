@@ -1,11 +1,11 @@
 import swapper
 from rest_framework import status, viewsets, permissions
 from rest_framework.response import Response
-from covid_care.serializers import RequestsSerializer
-from covid_care.models import Request
-from covid_care.permissions import IsUploaderOrSafeMethods
-from covid_care.utils.send_email import send_request_form
-from covid_care.constants.status import status as status_choices
+from r_care.serializers import RequestsSerializer
+from r_care.models import Request
+from r_care.permissions import IsUploaderOrSafeMethods
+from r_care.utils.send_email import send_request_form
+from r_care.constants.status import status as status_choices
 
 all_http_method_names = viewsets.ModelViewSet.http_method_names
 

@@ -3,7 +3,7 @@ from django.db import models
 import swapper
 from django.core.validators import RegexValidator, MinValueValidator
 from formula_one.models.base import Model
-from covid_care.constants import verification
+from r_care.constants import verification
 
 
 class Lead(Model):
