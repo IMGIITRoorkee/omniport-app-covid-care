@@ -14,7 +14,7 @@ def send_request_email(person, request_data):
         'r_care'
     )
     body_text = render_to_string(
-        'covid_care/request_email.html', {'request': request_data})
+        'r_care/request_email.html', {'request': request_data})
     category = Category.objects.get_or_create(
         name=service.nomenclature.verbose_name,
         slug=service.nomenclature.name,
@@ -25,10 +25,9 @@ def send_request_email(person, request_data):
         target_app_url = f'http://channeli.in/r_care/leads-and-requests/{pin}/{search_keyword}'
     except Exception as e:
         target_app_url = f'http://channeli.in/r_care/'
-    print(target_app_url)
     try:
         email_push(
-            subject_text=f'New request added on R-Care App',
+            subject_text=f'Emergency request created in R Care',
             body_text=body_text,
             category=category,
             has_custom_user_target=True,
@@ -55,7 +54,7 @@ def send_lead_email(person, lead_data):
         slug=service.nomenclature.name,
     )
     body_text = render_to_string(
-        'covid_care/lead_email.html', {'lead': lead_data})
+        'r_care/lead_email.html', {'lead': lead_data})
     pin = lead_data['pin_code']
     search_keyword = lead_data['resource'][0]['resource_type']
     try:
@@ -64,7 +63,7 @@ def send_lead_email(person, lead_data):
         target_app_url = f'https://channeli.in/'
     try:
         email_push(
-            subject_text='New lead added on R Care App',
+            subject_text='New lead added on R Care',
             body_text=body_text,
             category=category,
             has_custom_user_target=True,
