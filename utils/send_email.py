@@ -13,17 +13,32 @@ def send_request_email(person, request_data):
     service = settings.DISCOVERY.get_app_configuration(
         'r_care'
     )
-    body_text = render_to_string(
-        'r_care/request_email.html', {'request': request_data})
-    category = Category.objects.get_or_create(
+    app_category = Category.objects.get_or_create(
         name=service.nomenclature.verbose_name,
         slug=service.nomenclature.name,
     )
-    pin = request_data['pin_code']
+    category = Category.objects.get_or_create(
+        name='Request',
+        slug='r_care__request',
+        parent=app_category[0]
+    )
+    pin = lead_data['pin_code']
+    URL = 'https://api.postalpincode.in/pincode/' + pin
+    r = requests.get(url=URL)
+    try:
+        district = r.json()[0]['PostOffice'][0]['District']
+        state = r.json()[0]['PostOffice'][0]['State']
+        body_text = render_to_string(
+            'r_care/lead_email.html', {'request': request_data, 'state': state, 'district': district})
+    except Exception as e:
+        body_text = render_to_string(
+            'r_care/lead_email.html', {'request': request_data})
+
     try:
         target_app_url = f'http://channeli.in/r_care/leads-and-requests/{pin}'
     except Exception as e:
         target_app_url = f'http://channeli.in/r_care/'
+
     try:
         email_push(
             subject_text=f'Emergency medical request created in R Care',
@@ -47,13 +62,26 @@ def send_lead_email(person, lead_data):
     service = settings.DISCOVERY.get_app_configuration(
         'r_care'
     )
-    category = Category.objects.get_or_create(
+    app_category = Category.objects.get_or_create(
         name=service.nomenclature.verbose_name,
         slug=service.nomenclature.name,
     )
-    body_text = render_to_string(
-        'r_care/lead_email.html', {'lead': lead_data})
+    category = Category.objects.get_or_create(
+        name='Lead',
+        slug='r_care__lead',
+        parent=app_category[0]
+    )
     pin = lead_data['pin_code']
+    URL = 'https://api.postalpincode.in/pincode/' + pin
+    r = requests.get(url=URL)
+    try:
+        district = r.json()[0]['PostOffice'][0]['District']
+        state = r.json()[0]['PostOffice'][0]['State']
+        body_text = render_to_string(
+            'r_care/lead_email.html', {'lead': lead_data, 'state': state, 'district': district})
+    except Exception as e:
+        body_text = render_to_string(
+            'r_care/lead_email.html', {'lead': lead_data})
     try:
         target_app_url = f'https://channeli.in/r_care/leads-and-requests/{pin}'
     except Exception as e:

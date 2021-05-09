@@ -22,6 +22,22 @@ def store_request_template_image(request_id):
         request = Request.objects.get(id=request_id)
     except Exception as e:
         return 'Link unavailable'
+
+    name = f'{request.patient_name}_{request_id}'
+    request_image_folder = os.path.join(
+        'r_care',
+        'request_image'
+    )
+    destination = os.path.join(settings.MEDIA_ROOT, request_image_folder)
+    if not os.path.exists(destination):
+        os.makedirs(destination)
+
+    media_dir = os.path.join(destination, f'{name}.png')
+    if(os.path.exists(media_dir)):
+        final_destination = os.path.join(request_image_folder, f'{name}.png')
+        request_template_url = f"/media/{final_destination}"
+        return request_template_url
+
     URL = 'https://api.postalpincode.in/pincode/' + str(request.pin_code)
     r = requests.get(url=URL)
     try:
@@ -41,20 +57,9 @@ def store_request_template_image(request_id):
         filtered_string
     )
 
-    name = f'{request.patient_name}_{request_id}'
-    request_image_folder = os.path.join(
-        'r_care',
-        'request_image'
-    )
-    destination = os.path.join(settings.MEDIA_ROOT, request_image_folder)
-    if not os.path.exists(destination):
-        os.makedirs(destination)
-
-    media_dir = os.path.join(destination, f'{name}.png')
     HTML(string=filtered_string).write_png(media_dir)
-    final_destiantion = os.path.join(request_image_folder, f'{name}.png')
-
-    request_template_url = f"/media/{final_destiantion}"
+    final_destination = os.path.join(request_image_folder, f'{name}.png')
+    request_template_url = f"/media/{final_destination}"
     return request_template_url
 
 
@@ -67,6 +72,22 @@ def store_lead_template_image(lead_id):
         lead = Lead.objects.get(id=lead_id)
     except Exception as e:
         return 'Link Unavailable'
+
+    name = f'{lead.name}_{lead_id}'
+    lead_image_folder = os.path.join(
+        'r_care',
+        'lead_image'
+    )
+    destination = os.path.join(settings.MEDIA_ROOT, lead_image_folder)
+    if not os.path.exists(destination):
+        os.makedirs(destination)
+
+    media_dir = os.path.join(destination, f'{name}.png')
+    if(os.path.exists(media_dir)):
+        final_destination = os.path.join(request_image_folder, f'{name}.png')
+        request_template_url = f"/media/{final_destination}"
+        return request_template_url
+
     URL = 'https://api.postalpincode.in/pincode/' + str(lead.pin_code)
     r = requests.get(url=URL)
     try:
@@ -84,18 +105,8 @@ def store_lead_template_image(lead_id):
         filtered_string
     )
 
-    name = f'{lead.name}_{lead_id}'
-    lead_image_folder = os.path.join(
-        'r_care',
-        'lead_image'
-    )
-    destination = os.path.join(settings.MEDIA_ROOT, lead_image_folder)
-    if not os.path.exists(destination):
-        os.makedirs(destination)
-
-    media_dir = os.path.join(destination, f'{name}.png')
     HTML(string=filtered_string).write_png(media_dir)
-    final_destiantion = os.path.join(lead_image_folder, f'{name}.png')
+    final_destination = os.path.join(lead_image_folder, f'{name}.png')
 
-    lead_template_url = f"/media/{final_destiantion}"
+    lead_template_url = f"/media/{final_destination}"
     return lead_template_url
