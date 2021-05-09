@@ -5,6 +5,7 @@
     <title>Sharing Lead</title>
     <meta name="description" content="Board ticket" />
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
       @page {
         margin: 0;
         size: 1080px;
@@ -28,7 +29,13 @@
         justify-content: space-between;
         margin: 0;
         width: 100%;
-        font-weight: 600 !important;
+        font-weight: 400 !important;
+      }
+      h1,
+      h2,
+      h3,
+      strong {
+        font-weight: 400 !important;
       }
       html body section {
         box-sizing: border-box;
@@ -41,7 +48,6 @@
         padding-left: 0;
       }
       html body section ul li {
-        font-weight: 700;
         font-size: 20pt;
       }
       html body section#informations {
@@ -59,7 +65,6 @@
         background-color: #bce2eb;
         border-radius: 10px;
         color: #000000;
-        font-weight: 700 !important;
       }
       #name img {
         vertical-align: text-bottom;
@@ -69,7 +74,6 @@
         margin-left: 1cm;
         margin-bottom: 20pt;
         font-size: 30pt !important;
-        font-weight: 600 !important;
       }
       #address {
         margin: 0;
@@ -91,7 +95,6 @@
         background-color: #219ebc;
         border-radius: 10px;
         color: #ffffff;
-        font-weight: 600 !important;
       }
       .contact {
         display: flex;
@@ -149,72 +152,86 @@
         padding: 1.5cm;
         font-size: 25pt;
       }
+      .app-logo {
+        margin-right: 10px;
+        width: 25pt;
+        vertical-align: text-bottom;
+      }
     </style>
   </head>
 
   <body>
     <section id="informations">
       <div>
-       {% if state %}
+        {% if state %}
         <h1 id="name">
-          <img
-            src="https://internet.channeli.in/static/r_care/assets/pin.svg"
-          />
+          <img src="https://channeli.in/static/r_care/pin.svg" />
           {{district}}, {{state}}
         </h1>
         {% else %}
         <h1 id="name">
-          <img src="../../static/assets/pin.svg" />
+          <img src="https://channeli.in/static/r_care/pin.svg" />
           {{lead.pin_code}}
         </h1>
         {% endif %}
       </div>
       <br />
       <h1 id="resourceHead">Sharing helpful lead for:</h1>
-      {% if lead.resource %}
+      {% if lead.resource %} 
       {% for l in lead.resource.all %}
       <div class="resource">
         <span>{{l.get_resource_type_display}}</span>
-        {% if l.capacity %}<span>Capacity: {{l.capacity}}</span> {% endif %}
+        {% if l.capacity %}
+        <span>Capacity: {{l.capacity}}</span> 
+        {% endif %}
       </div>
       <div class="resource">
-       {% if l.cost %}<span>Cost: {{l.cost}}</span>{% endif %}
+        {% if l.cost %}
+        <span>Cost: {{l.cost}}</span>
+        {% endif %}
       </div>
       {% if l.description %}
-        <div class="warning"> 
-          {{l.description}}
-        </div> 
-      {% endif %}
-      {% if lead.plasma_donor %}
-        {% for i in lead.plasma_donor.all %}
-          <div class="plasmDonorDetails">
-            Donor Details: <br/>
-            Blood Group: {{i.blood_group}} <br/>
-            {% if i.tested_positive %} 
-              Tested positive at: {{i.positive_when}} <br/> 
-            {% endif %}
-            {% if i.vaccinated %}
-              Vaccinated
-            {% endif %}
-          </div>
-        {% endfor %}
-      {% endif%}
-      {% endfor %}
+      <div class="warning">{{l.description}}</div>
+      {% endif %} 
+      {% if lead.plasma_donor %} 
+      {% for i in lead.plasma_donor.all%}
+      <div class="plasmDonorDetails">
+        Donor Details: 
+        <br />
+        Blood Group: {{i.blood_group}} 
+        <br />
+        {% if i.tested_positive %} 
+        Tested positive at: {{i.positive_when}}
+        <br />
+        {% endif %} 
+        {% if i.vaccinated %} 
+        Vaccinated 
+        {% endif %}
+      </div>
+      {% endfor %} 
+      {% endif%} 
+      {% endfor %} 
       {% endif %}
       <div class="address">
-        Name: {{lead.name }} <br/>
+        Name: {{lead.name }} 
+        <br />
         Address: {{lead.address}}, {{lead.pin_code}}
       </div>
       <div class="contact">
         <span>Contact: <strong>{{lead.contact}}</strong></span>
-        {% if lead.other_contact %}<span>{{lead.other_contact}}</span> {% endif %}
+        {% if lead.other_contact %}
+        <span>{{lead.other_contact}}</span> 
+        {% endif %}
       </div>
       <ul>
         <li>
-          <img src="https://internet.channeli.in/static/r_care/assets/img.svg" />
+          <img src="https://channeli.in/static/r_care/img.svg" />
           channeli.in/r_care
         </li>
-        <li>We stand together.</li>
+        <li>
+          <img src="https://channeli.in/static/r_care/assets/logo.svg" class="app-logo"/>
+          We stand together.
+        </li>
       </ul>
     </section>
   </body>
