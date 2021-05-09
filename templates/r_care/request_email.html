@@ -7,10 +7,15 @@
       A request for the following resources was added in
       <a href="https://channeli.in/r_care">R Care</a> on {% now "SHORT_DATETIME_FORMAT" %}:
     </div>
+    {% if state %}
+    <div>
+      {{district}}, {{state}}
+    </div>
+    {% endif%}
     <br/>
     {% for i in request.resource %}
     <div>
-      {{forloop.counter}}) {{ i.get_resource_type_display }}:<br/>
+      {{forloop.counter}}) {{ i.resource_type|capfirst }}:<br/>
       {% if i.requirement %} 
       Requirement: {{ i.requirement }} 
       {% endif %}

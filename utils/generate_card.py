@@ -84,7 +84,7 @@ def store_lead_template_image(lead_id):
 
     media_dir = os.path.join(destination, f'{name}.png')
     if(os.path.exists(media_dir)):
-        final_destination = os.path.join(request_image_folder, f'{name}.png')
+        final_destination = os.path.join(lead_image_folder, f'{name}.png')
         request_template_url = f"/media/{final_destination}"
         return request_template_url
 

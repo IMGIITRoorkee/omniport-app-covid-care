@@ -7,10 +7,15 @@
       A helpful lead for the following resource was added in 
       <a href="https://channeli.in/r_care">R Care</a>:
     </div>
+    {% if state %}
+      <div>
+        {{district}}, {{state}}
+      </div>
+    {% endif%}
     <br/>
     {% for i in lead.resource %}
     <div>
-      {{ i.get_resource_type_display }}:<br/>
+      {{ i.resource_type|capfirst }}:<br/>
       {% if i.capacity %} Capacity: {{i.capacity}} 
       {% endif %}
       {% if i.description %} 
