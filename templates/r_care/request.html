@@ -144,27 +144,24 @@
       <div>
         {% if state %}
         <h1 id="name">
-          <img
-            src="https://internet.channeli.in/static/r_care/assets/pin.svg"
-          />
+          <img src="https://internet.channeli.in/static/r_care/assets/pin.svg" />
           {{district}}, {{state}}
         </h1>
         {% else %}
         <h1 id="name">
-          <img src="../../static/assets/pin.svg" />
+          <img src="https://internet.channeli.in/static/r_care/assets/pin.svg" />
           {{request.pin_code}}
         </h1>
         {% endif %}
       </div>
-      <h1 id="address">{{request.address}}{{request.pin_code}}</h1>
+      <h1 id="address">{{request.address}}, {{request.pin_code}}</h1>
       <br />
       <h1 id="resourceHead">Requesting emergency help for:</h1>
       {% if request.resource %} {% for i in request.resource.all %}
       <div class="resource">
-        <span>{{i.resource_type|capfirst}}</span>
-        {% if i.requirement%}<span>{{i.resource_type}}</span>{% endif %} {% if
-        i.patient_blood_group %}<span>{{i.patient_blood_group}}</span>{% endif
-        %}
+        <span>{{i.get_resource_type_display}}</span>
+        {% if i.requirement%}<span>{{i.requirement}}</span>{% endif %} 
+        {% if i.patient_blood_group %}<span>{{i.patient_blood_group}}</span>{% endif %}
       </div>
       {% endfor %} {% endif %}
       <div class="address">

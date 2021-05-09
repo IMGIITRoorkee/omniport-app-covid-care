@@ -111,6 +111,12 @@
       .contact strong {
         color: #000000;
       }
+      .plasmDonorDetails {
+        background-color: #f5fcff;
+        font-size: 25pt;
+        margin-left: 20pt;
+        padding: 10pt;
+      }
       .warning {
         font-size: 20pt;
         margin-left: 20pt;
@@ -168,16 +174,35 @@
       {% if lead.resource %}
       {% for l in lead.resource.all %}
       <div class="resource">
-        <span>{{l.resource_type|capfirst}}</span>
+        <span>{{l.get_resource_type_display}}</span>
         {% if l.capacity %}<span>Capacity: {{l.capacity}}</span> {% endif %}
       </div>
       <div class="resource">
        {% if l.cost %}<span>Cost: {{l.cost}}</span>{% endif %}
       </div>
+      {% if l.description %}
+        <div class="warning"> 
+          {{l.description}}
+        </div> 
+      {% endif %}
+      {% if lead.plasma_donor %}
+        {% for i in lead.plasma_donor.all %}
+          <div class="plasmDonorDetails">
+            Donor Details: <br/>
+            Blood Group: {{i.blood_group}} <br/>
+            {% if i.tested_positive %} 
+              Tested positive at: {{i.positive_when}} <br/> 
+            {% endif %}
+            {% if i.vaccinated %}
+              Vaccinated
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% endif%}
       {% endfor %}
       {% endif %}
-      <div class="warning"> *Please contact beforehand. No guarantees on price!</div>
       <div class="address">
+        Name: {{lead.name }} <br/>
         Address: {{lead.address}}, {{lead.pin_code}}
       </div>
       <div class="contact">
