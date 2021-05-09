@@ -20,21 +20,19 @@ def send_request_email(person, request_data):
         slug=service.nomenclature.name,
     )
     pin = request_data['pin_code']
-    search_keyword = request_data['resource'][0]['resource_type']
     try:
-        target_app_url = f'http://channeli.in/r_care/leads-and-requests/{pin}/{search_keyword}'
+        target_app_url = f'http://channeli.in/r_care/leads-and-requests/{pin}'
     except Exception as e:
         target_app_url = f'http://channeli.in/r_care/'
     try:
         email_push(
-            subject_text=f'Emergency request created in R Care',
+            subject_text=f'Emergency request created at R Care',
             body_text=body_text,
             category=category,
             has_custom_user_target=True,
             persons=person,
             target_app_name=service.nomenclature.name,
             target_app_url=target_app_url,
-            send_only_to_subscribed_users=True
         )
     except Exception as e:
         pass
@@ -56,9 +54,8 @@ def send_lead_email(person, lead_data):
     body_text = render_to_string(
         'r_care/lead_email.html', {'lead': lead_data})
     pin = lead_data['pin_code']
-    search_keyword = lead_data['resource'][0]['resource_type']
     try:
-        target_app_url = f'https://channeli.in/r_care/leads-and-requests/{pin}/{search_keyword}'
+        target_app_url = f'https://channeli.in/r_care/leads-and-requests/{pin}'
     except Exception as e:
         target_app_url = f'https://channeli.in/'
     try:
@@ -70,7 +67,6 @@ def send_lead_email(person, lead_data):
             persons=person,
             target_app_name=service.nomenclature.name,
             target_app_url=target_app_url,
-            send_only_to_subscribed_users=True
         )
     except Exception as e:
         pass
