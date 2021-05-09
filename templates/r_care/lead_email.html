@@ -11,8 +11,11 @@
     {% for i in lead.resource %}
     <div>
       {{ i.get_resource_type_display }}:<br/>
-      {% if i.capacity %} Capacity: {{i.capacity}} {% endif %}
-      {% if i.description %} Description: {{ i.description }} {% endif %}
+      {% if i.capacity %} Capacity: {{i.capacity}} 
+      {% endif %}
+      {% if i.description %} 
+      Description: {{ i.description }} 
+      {% endif %}
     </div>
     {% endfor %}
     <br/>
