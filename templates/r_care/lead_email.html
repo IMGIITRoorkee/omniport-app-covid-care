@@ -9,7 +9,7 @@
     <br/>
     {% for i in lead.resource %}
     <div>
-      {{forloop.counter}}.{{ i.resource_type_display }}:<br/>
+      {{forloop.counter}}.{{ i.resource_type|capfirst }}:<br/>
       {% if i.capacity %} Capacity: {{i.capacity}} {% endif %}
       {% if i.description %} Description: {{ i.description }} {% endif %}
     </div>
