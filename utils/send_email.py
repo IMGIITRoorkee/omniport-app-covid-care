@@ -26,7 +26,7 @@ def send_request_email(person, request_data):
         target_app_url = f'http://channeli.in/r_care/'
     try:
         email_push(
-            subject_text=f'Emergency request created at R Care',
+            subject_text=f'Emergency medical request created in R Care',
             body_text=body_text,
             category=category,
             has_custom_user_target=True,
@@ -60,7 +60,7 @@ def send_lead_email(person, lead_data):
         target_app_url = f'https://channeli.in/'
     try:
         email_push(
-            subject_text='New lead added on R Care',
+            subject_text='New lead added in R Care',
             body_text=body_text,
             category=category,
             has_custom_user_target=True,
