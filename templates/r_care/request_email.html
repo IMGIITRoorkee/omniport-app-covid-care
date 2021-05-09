@@ -4,20 +4,20 @@
   <body>
     {% if request %}
     <div>
-      A request for the following resources and specifications was added in
-      R-Care on {% now "SHORT_DATETIME_FORMAT" %}:
+      A request for the following resources was added in
+      <a href="https://channeli.in/r_care">R Care</a> on {% now "SHORT_DATETIME_FORMAT" %}:
     </div>
     <br/>
     {% for i in request.resource %}
     <div>
-      {{forloop.counter}}.{{ i.resource_type|capfirst }} :<br/>
+      {{forloop.counter}}) {{ i.get_resource_type_display() }}:<br/>
       {% if i.requirement %} Requirement: {{ i.requirement }} {% endif %}
       {% if i.patient_blood_group %} Blood Group: {{ i.patient_blood_group }} {% endif %}
     </div>
     {% endfor %}
     <br/>
     <div>
-    Contact: {{request.contact}} 
+    Contact: <a href="tel:{{request.contact}}">{{request.contact}}</a>
     <div>
     {% if request.other_contact%}
     <div>
@@ -32,7 +32,7 @@
     </div>
     {% if request.patient_spo2 %}
     <div>
-    Patient SpO2: {{request.patient_spo2}}
+    Patient SpO2 value: {{request.patient_spo2}}
     </div>
     {% endif %}
     {% if request.patient_ct_value %}
@@ -46,13 +46,22 @@
     </div>
     <br/>
     <div>
-    If you have any information or lead regarding the requested resources in the given region, please contact the request creator. You may also share helpful leads that you know about at 
+    If you have any information or lead regarding the requested resources in the given region, 
+    please contact the request creator.
+    You may also share helpful leads that you know about at 
     <a href="https://channeli.in/r_care/lead">channeli.in/r_care/lead</a>.
     </div>
     <br/>
     <div>
     We stand together.
     </div>
+    <br />
+    <br />
+    <div>
+    You are receiving this email because you have subscribed to email notifications for R Care app. 
+    To unsubscribe, visit <a href="https://channeli.in/settings/manage_emails">channeli.in/settings/manage_emails</a>.
+    </div>
+    <br/>  
     {% endif %}
   </body>
 </html> 
