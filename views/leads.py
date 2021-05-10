@@ -34,6 +34,6 @@ class LeadsViewSet(viewsets.ModelViewSet):
         person = []
         for i in l_i:
             person += i.person.all()
-        send_lead_email(person, request.data)
         response = super().create(request, *args, **kwargs)
+        send_lead_email(person, request.data)
         return response
