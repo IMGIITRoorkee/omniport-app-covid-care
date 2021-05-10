@@ -50,8 +50,8 @@ class RequestsViewSet(viewsets.ModelViewSet):
         person = []
         for i in l_i:
             person += i.person.all()
-        send_request_email(person, request.data)
         response = super().create(request, *args, **kwargs)
+        send_request_email(person, request.data)
         return response
 
     def update(self, request, *args, **kwargs):
