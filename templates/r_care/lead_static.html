@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Sharing Lead</title>
+    <meta name="description" content="Board ticket" />
+    <style>
+      @page {
+        margin: 0;
+        size: 1080px;
+      }
+      html {
+        align-content: center;
+        align-items: center;
+        background: #eef1f5;
+        display: flex;
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100%;
+        justify-content: center;
+      }
+      html body {
+        background: #fff;
+        box-sizing: border-box;
+        color: #888888;
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        justify-content: space-between;
+        margin: 0;
+        width: 100%;
+        font-weight: 600 !important;
+      }
+      html body section {
+        box-sizing: border-box;
+      }
+      html body section ul {
+        align-items: center;
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding-left: 0;
+      }
+      html body section ul li {
+        font-weight: 700;
+        font-size: 20pt;
+      }
+      html body section#informations {
+        flex: 1;
+        padding: 0;
+        position: relative;
+      }
+      html body section#informations h1 {
+        display: inline-block;
+        font-size: 30pt;
+      }
+      #name {
+        margin-left: 1cm;
+        padding: 10pt;
+        background-color: #bce2eb;
+        border-radius: 10px;
+        color: #000000;
+        font-weight: 700 !important;
+      }
+      #name img {
+        vertical-align: text-bottom;
+      }
+      #resourceHead {
+        margin: 0;
+        margin-left: 1cm;
+        margin-bottom: 20pt;
+        font-size: 30pt !important;
+        font-weight: 600 !important;
+      }
+      #address {
+        margin: 0;
+        margin-left: 1cm;
+        margin-bottom: 20pt;
+        font-size: 25pt !important;
+      }
+      .resource {
+        display: flex;
+        flex-flow: wrap;
+        margin-left: 1cm;
+      }
+      .resource span {
+        font-size: 35pt;
+        padding: 10pt;
+        margin: 10pt;
+        margin-left: 0;
+        margin-top: 0;
+        background-color: #219ebc;
+        border-radius: 10px;
+        color: #ffffff;
+        font-weight: 600 !important;
+      }
+      .contact {
+        display: flex;
+        flex-flow: wrap;
+        margin-left: 1cm;
+      }
+      .contact span {
+        font-size: 30pt;
+        padding: 10pt;
+        margin: 10pt;
+        margin-left: 0;
+        margin-top: 0;
+        background-color: #bce2eb;
+        border-radius: 10px;
+        color: #888888;
+      }
+      .contact strong {
+        color: #000000;
+      }
+      .address {
+        margin: 1cm;
+        margin-left: 1cm;
+        font-size: 25pt;
+      }
+      html body section#informations ul {
+        margin-left: 1cm;
+        color: #808080;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: auto;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      html body section#informations ul img {
+        width: 25pt;
+        vertical-align: text-bottom;
+      }
+      html body section#informations ul li {
+        padding: 1.5cm;
+        font-size: 25pt;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="informations">
+      <div>
+        <h1 id="name">
+          <img src="../../static/assets/pin.svg" />
+          Mumbai, Maharashtra
+        </h1>
+      </div>
+      <br />
+      <h1 id="resourceHead">Sharing helpful lead for:</h1>
+      <div class="resource">
+        <span>Oxygen</span>
+        <span>Capacity: 5L cans</span>
+        <span>Cost: 5000</span>
+        <span>Please contact beforehand. No guarantees on price!</span>
+      </div>
+      <h1 class="address">
+        Address: 23-C, Ground Floor, Navi Mumbai, Mumbai, Maharashtra, 401202
+      </h1>
+      <div class="contact">
+        <span>Contact: <strong>7676767676</strong></span>
+        <span>example@gmail.com</span>
+      </div>
+      <ul>
+        <li>
+          <img src="../../static/assets/img.svg" />
+          channeli.in/r_care
+        </li>
+        <li>We stand together.</li>
+      </ul>
+    </section>
+  </body>
+</html>

@@ -1,3 +1,3 @@
-# Covid Care
+# R Care
 
-> Omniport app backend
+> Request emergency Covid related help and find verified leads from R-community.

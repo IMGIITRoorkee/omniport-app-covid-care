@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    {% if lead %}
+    <div>
+      A helpful lead for the following resource was added in 
+      <a href="https://channeli.in/r_care">R Care</a>:
+    </div>
+    {% if state %}
+      <div>
+        {{district}}, {{state}}
+      </div>
+    {% endif%}
+    <br/>
+    {% for i in lead.resource %}
+    <div>
+      {{ i.resource_type|capfirst }}:<br/>
+      {% if i.capacity %} Capacity: {{i.capacity}} 
+      {% endif %}
+      {% if i.description %} 
+      Description: {{ i.description }} 
+      {% endif %}
+    </div>
+    {% endfor %}
+    <br/>
+    <div>
+    Name: {{lead.name}}
+    </div>
+    <div>
+    Contact: <a href="tel:{{request.contact}}">{{lead.contact}}</a>
+    <div>
+    {% if lead.other_contact%}
+    <div>
+    Alternate Contact: {{lead.other_contact}}
+    </div>
+    {% endif %}
+    <br/>
+    <div>
+    Address: {{lead.address}}, {{lead.pin_code}}
+    <br/>
+    </div>
+    <br/>
+    <div> 
+    If you know someone who needs these resources in the given region, please share this lead with them. 
+    <br />
+    You can share helpful leads that you know about at <a href="https://channeli.in/r_care/lead">channeli.in/r_care/lead</a>.
+    <br />
+    You can also request for emergency medical resources at <a href="https://channeli.in/r_care/request">channeli.in/r_care/request</a>.
+    </div>
+    <br/>
+    <div>
+    We stand together.
+    </div>
+    <br />
+    <br />
+    <div>
+    You are receiving this email because you have subscribed to email notifications for R Care app. 
+    To unsubscribe, visit <a href="https://channeli.in/settings/manage_emails">channeli.in/settings/manage_emails</a>.
+    </div>
+    <br/>  
+    {% endif %}
+  </body>
+</html> 

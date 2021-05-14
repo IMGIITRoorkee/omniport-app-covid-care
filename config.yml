@@ -1,8 +1,8 @@
 nomenclature:
-  name: Covid_Care
-  verboseName: Covid Care
-description: An app for Omniport that does what apps do
+  name: r_care
+  verboseName: R Care
+description: Request emergency Covid related help and find verified leads from R-community.
 baseUrls:
-  http: Covid_Care/
-  static: Covid_Care/
+  http: r_care/
+  static: r_care/
 isApi: true

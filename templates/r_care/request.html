@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Emergency Request</title>
+    <meta name="description" content="Board ticket" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+      @page {
+        margin: 0;
+        size: 1080px;
+      }
+      html {
+        align-content: center;
+        align-items: center;
+        background: #eef1f5;
+        display: flex;
+        font-family: "Open Sans", sans-serif;
+        height: 100%;
+        justify-content: center;
+      }
+      html body {
+        background: #fff;
+        box-sizing: border-box;
+        color: #333333;
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        justify-content: space-between;
+        margin: 0;
+        width: 100%;
+        font-weight: 400 !important;
+      }
+      html body section {
+        box-sizing: border-box;
+      }
+      h1,
+      h2,
+      h3,
+      strong {
+        font-weight: 400 !important;
+      }
+      html body section ul {
+        align-items: center;
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding-left: 0;
+      }
+      html body section ul li {
+        font-size: 20pt;
+      }
+      html body section#informations {
+        flex: 1;
+        padding: 0;
+        position: relative;
+      }
+      html body section#informations h1 {
+        display: inline-block;
+        font-size: 30pt;
+      }
+      #name {
+        margin-left: 1cm;
+        padding: 10pt;
+        background-color: #bce2eb;
+        border-radius: 10px;
+        color: #000000;
+        font-weight: 400 !important;
+      }
+      #name img {
+        vertical-align: text-bottom;
+      }
+      #resourceHead {
+        margin: 0;
+        margin-left: 1cm;
+        margin-bottom: 20pt;
+        font-size: 25pt !important;
+        font-weight: 400 !important;
+      }
+      #address {
+        margin: 0;
+        margin-left: 1cm;
+        margin-bottom: 20pt;
+        font-size: 25pt !important;
+      }
+      .resource {
+        display: flex;
+        flex-flow: wrap;
+        margin-left: 1cm;
+      }
+      .resource span {
+        font-size: 35pt;
+        padding: 10pt;
+        margin: 10pt;
+        margin-left: 0;
+        margin-top: 0;
+        background-color: #219ebc;
+        border-radius: 10px;
+        color: #ffffff;
+      }
+      .contact {
+        display: flex;
+        flex-flow: wrap;
+        margin-left: 1cm;
+      }
+      .contact span {
+        font-size: 30pt;
+        padding: 10pt;
+        margin: 10pt;
+        margin-left: 0;
+        margin-top: 0;
+        background-color: #bce2eb;
+        border-radius: 10px;
+        color: #333333;
+      }
+      .contact strong {
+        color: #000000;
+        font-weight: 400;
+      }
+      .address {
+        margin: 1cm;
+        margin-left: 1cm;
+        font-size: 25pt;
+      }
+      html body section#informations ul {
+        margin-left: 1cm;
+        color: #808080;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: auto;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      html body section#informations ul img {
+        width: 25pt;
+        vertical-align: text-bottom;
+      }
+      html body section#informations ul li {
+        padding: 1.5cm;
+        font-size: 25pt;
+      }
+      .app-logo {
+        margin-right: 10px;
+        width: 25pt;
+        vertical-align: text-bottom;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="informations">
+      <div>
+        {% if state %}
+        <h1 id="name">
+          <img
+            src="https://channeli.in/static/r_care/pin.svg"
+          />
+          {{district}}, {{state}}
+        </h1>
+        {% else %}
+        <h1 id="name">
+          <img
+            src="https://channeli.in/static/r_care/pin.svg"
+          />
+          {{request.pin_code}}
+        </h1>
+        {% endif %}
+      </div>
+      <h1 id="address">{{request.address}}, {{request.pin_code}}</h1>
+      <br />
+      <h1 id="resourceHead">Requesting emergency help for:</h1>
+      {% if request.resource %} 
+      {% for i in request.resource.all %}
+      <div class="resource">
+        <span>{{i.get_resource_type_display}}</span>
+        {% if i.requirement%}
+        <span>{{i.requirement}}</span>
+        {% endif %}
+        {% if i.patient_blood_group %}
+        <span>{{i.patient_blood_group}}</span>
+        {% endif %}
+      </div>
+      {% endfor %} 
+      {% endif %}
+      <div class="address">
+        <span>For: {{request.patient_name}} </span>
+        <br />
+        <span>Age: {{request.age}}</span>
+        <br />
+        {% if request.patient_ct_value%}
+        <span>CT value: {{request.patient_ct_value}}</span>
+        <br />
+        {% endif %} 
+        {% if request.patient_spo2%}
+        <span>SpO2 value: {{request.patient_spo2}}</span>
+        {% endif %}
+      </div>
+      <div class="contact">
+        <span>Contact: <strong>{{request.contact}}</strong></span>
+        {% if request.other_conatct%}
+        <span>{{request.other_conatct}}</span>
+        {% endif%}
+      </div>
+      <ul>
+        <li>
+          <img
+            src="https://channeli.in/static/r_care/img.svg"
+          />
+          channeli.in/r_care
+        </li>
+        <li>
+          <img src="https://channeli.in/static/r_care/assets/logo.svg" class="app-logo"/>
+          We stand together.
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
