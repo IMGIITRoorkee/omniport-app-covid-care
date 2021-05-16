@@ -6,6 +6,9 @@ from formula_one.utils.upload_to import UploadTo
 
 
 class BulletinNew(Model):
+    """
+    Holds resourceful information related to health-helpline and cure.
+    """
     title = models.CharField(
         max_length=255
     )
@@ -22,7 +25,8 @@ class BulletinNew(Model):
 
     def __str__(self):
         """
-        Short Description about the model
+         Return the string representation of the model
+        :return: the string representation of the model
         """
         name = self.title
         return f'Bulletin News: Name = {name}'

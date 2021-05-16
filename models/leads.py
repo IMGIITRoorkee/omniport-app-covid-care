@@ -1,14 +1,15 @@
-from django.db import models
-
 import swapper
+from django.db import models
 from django.core.validators import RegexValidator, MinValueValidator
+
 from formula_one.models.base import Model
+
 from r_care.constants import verification
 
 
 class Lead(Model):
     """
-    Short Description about the model
+    Describes the details of a lead registered.
     """
 
     uploader = models.ForeignKey(
@@ -52,7 +53,8 @@ class Lead(Model):
 
     def __str__(self):
         """
-        Short Description about the model
+        Return the string representation of the model
+        :return: the string representation of the model
         """
         name = self.name
         verification = self.verification

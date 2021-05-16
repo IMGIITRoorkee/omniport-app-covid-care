@@ -1,14 +1,15 @@
+import swapper
 from django.db import models
 from django.core.validators import RegexValidator, MinValueValidator
 
-import swapper
 from formula_one.models.base import Model
+
 from r_care.constants import status
 
 
 class Request(Model):
     """
-    Short Description about the model
+    Describes the details of a request registered.
     """
 
     uploader = models.ForeignKey(
@@ -51,7 +52,8 @@ class Request(Model):
 
     def __str__(self):
         """
-        Short Description about the function
+        Return the string representation of the model
+        :return: the string representation of the model
         """
         patient_name = self.patient_name
         return f'Request: Patient Name = {patient_name}'

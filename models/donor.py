@@ -1,14 +1,14 @@
 from django.db import models
-from django.core.validators import RegexValidator, MinValueValidator
 
 from formula_one.models.base import Model
-from r_care.models import Lead
 from core.kernel.constants.biological_information import BLOOD_GROUPS
+
+from r_care.models import Lead
 
 
 class PlasmaDonor(Model):
     """
-    Short Description about the model
+    Describes the details of the Plasma Donor registered.
     """
 
     blood_group = models.CharField(
@@ -27,6 +27,7 @@ class PlasmaDonor(Model):
     vaccinated = models.BooleanField(
         default=False
     )
+    # One-one Foreignkey relation between lead and plasma donor model
     lead = models.ForeignKey(
         to=Lead,
         on_delete=models.CASCADE,
@@ -35,7 +36,8 @@ class PlasmaDonor(Model):
 
     def __str__(self):
         """
-        Short Description about the model
+         Return the string representation of the model
+        :return: the string representation of the model
         """
         lead = self.lead
         blood_group = self.blood_group

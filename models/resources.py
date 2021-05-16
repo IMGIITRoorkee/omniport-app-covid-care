@@ -1,18 +1,18 @@
 from django.db import models
-from django.contrib.contenttypes import fields as contenttypes_fields
-from django.contrib.contenttypes import models as contenttypes_models
 
 from formula_one.models.base import Model
+from core.kernel.constants.biological_information import BLOOD_GROUPS
+
 from r_care.models import Lead, Request
 from r_care.constants import categories
-from core.kernel.constants.biological_information import BLOOD_GROUPS
 
 
 class RequestResource(Model):
     """
-    Short Description about the model
+    Describes the details of a resource registered for a request.
     """
 
+    # Many-one Foreignkey relation between RequestResource and Request model
     request = models.ForeignKey(
         to=Request,
         on_delete=models.CASCADE,
@@ -35,7 +35,8 @@ class RequestResource(Model):
 
     def __str__(self):
         """
-        Short Description about the function
+        Return the string representation of the model
+        :return: the string representation of the model
         """
         resource_type = self.resource_type
         request = self.request
@@ -44,9 +45,9 @@ class RequestResource(Model):
 
 class LeadResource(Model):
     """
-    Short Description about the model
+    Describes the details of a resource registered for a lead.
     """
-
+    # One-one Foreignkey relation between LeadResource and Lead model
     lead = models.ForeignKey(
         to=Lead,
         on_delete=models.CASCADE,
@@ -72,7 +73,8 @@ class LeadResource(Model):
 
     def __str__(self):
         """
-        Short Description about the function
+        Return the string representation of the model
+        :return: the string representation of the model
         """
         resource_type = self.resource_type
         lead = self.lead
