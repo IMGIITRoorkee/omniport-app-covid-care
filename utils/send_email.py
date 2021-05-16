@@ -48,6 +48,7 @@ def send_request_email(person, request_data):
             persons=person,
             target_app_name=service.nomenclature.name,
             target_app_url=target_app_url,
+            send_only_to_subscribed_users=True,
         )
     except Exception as e:
         pass
@@ -95,6 +96,7 @@ def send_lead_email(person, lead_data):
             persons=person,
             target_app_name=service.nomenclature.name,
             target_app_url=target_app_url,
+            send_only_to_subscribed_users=True,
         )
     except Exception as e:
         pass
